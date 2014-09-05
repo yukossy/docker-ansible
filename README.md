@@ -10,7 +10,7 @@ docker-ansible
 
 * authorized_keysは各自用意してください
 
-```
+```ssh-keygen
 ssh-keygen
 cp -p ~/.ssh/id_rsa.pub ./authorized_keys
 ```
