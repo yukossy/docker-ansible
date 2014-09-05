@@ -22,6 +22,17 @@ RUN sed -ri '/#UsePAM yes/a UsePAM no' /etc/ssh/sshd_config
 
 # setup ssh
 RUN mkdir -m 700 -p /home/docker/.ssh;chown docker:docker /home/docker/.ssh
+ADD authorized_keys /home/docker/.ssh/authorized_keys
+RUN chown docker:docker /home/docker/.ssh/authorized_keys; chmod 600 /home/docker/.ssh/authorized_keys
+
+# init
+RUN /etc/init.d/ssh start
+RUN /etc/init.d/ssh stop
+
+# expose
+EXPOSE 22
 
 # start SSH
-RUN /etc/init.d/ssh start
+# CMD /etc/init.d/ssh start
+CMD ["/usr/sbin/sshd","-D"]
+
