@@ -14,7 +14,7 @@ RUN useradd -m -s /bin/bash docker
 RUN echo docker:docker |chpasswd
 
 # setup sudoers
-RUN echo "docker ALL=(ALL)NOPASSWD:ALL"
+RUN echo "docker ALL=(ALL)NOPASSWD:ALL" >> /etc/sudoers
 
 # setup sshd_config
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
