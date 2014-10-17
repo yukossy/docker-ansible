@@ -1,0 +1,10 @@
+---
+- hosts: docker
+  sudo: yes
+  user: docker
+  tasks:
+    - name: Installs nginx web server
+      apt: pkg=nginx state=latest
+    - name: start nginx and enabled
+      service : name=nginx pattern=/etc/init.d/nginx state=started enabled=yes
+
